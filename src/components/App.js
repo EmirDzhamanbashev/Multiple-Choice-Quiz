@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader";
@@ -10,10 +10,11 @@ import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import data from "./data";
 
 const initialState = {
-  questions: [],
-  status: "loading", //loading error ready active finished
+  questions: data,
+  status: "ready", //loading error ready active finished
   index: 0,
   answer: null,
   points: 0,
@@ -83,12 +84,12 @@ export default function App() {
     0
   );
 
-  useEffect(() => {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/questions")
+  //     .then((res) => res.json())
+  //     .then((data) => dispatch({ type: "dataReceived", payload: data }))
+  //     .catch((err) => dispatch({ type: "dataFailed" }));
+  // }, []);
   return (
     <div className="app">
       <Header />
